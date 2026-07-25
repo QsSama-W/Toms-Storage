@@ -20,8 +20,10 @@ jobs:
     - name: 赋予 Gradle 执行权限
       run: chmod +x ./Toms-Storage-120/gradlew
 
-    - name: 执行编译
-      run: cd Toms-Storage-120 && ./gradlew build
+    - name: 执行编译 (分配 3G 内存并强制刷新依赖网络缓存)
+      env:
+        GRADLE_OPTS: "-Xmx3g -Dorg.gradle.daemon=false"
+      run: cd Toms-Storage-120 && ./gradlew build --refresh-dependencies
 
     - name: 上传编译生成的 Jar 文件
       uses: actions/upload-artifact@v4
