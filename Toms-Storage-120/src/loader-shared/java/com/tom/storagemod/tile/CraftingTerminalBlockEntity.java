@@ -20,7 +20,6 @@ import com.tom.storagemod.Content;
 import com.tom.storagemod.StorageMod;
 import com.tom.storagemod.gui.CraftingTerminalMenu;
 import com.tom.storagemod.platform.PlatformRecipe;
-import com.tom.storagemod.polymorph.PolymorphHelper;
 import com.tom.storagemod.util.CraftingMatrix;
 import com.tom.storagemod.util.StoredItemStack;
 
@@ -177,9 +176,6 @@ public class CraftingTerminalBlockEntity extends StorageTerminalBlockEntity {
 	}
 
 	private PlatformRecipe getRecipe() {
-		if (StorageMod.polymorph) {
-			return PlatformRecipe.of(PolymorphHelper.getRecipe(this, RecipeType.CRAFTING, craftMatrix, level).orElse(null));
-		}
 		return PlatformRecipe.of(level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftMatrix, level).orElse(null));
 	}
 
